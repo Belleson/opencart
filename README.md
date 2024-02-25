@@ -4,4 +4,4 @@ Two raw SQL scripts I used to move data from one opencart database version to an
 
 You need to replace [opencartx_db] with the names of your source and destination databases. BE CAREFUL, make a data backup script, test on a copy of databases before using this in production! This has been tested in CPanel phpMyAdmin, but because it uses "insert () select from ...", you cannot execute and roll back (phpMyAdmin is not very smart about pre-parsing queries).
 
-The script does not include all tables, but covers important tables like customer, order, order_history, product, category, etc. It does not include tables for any extensions.
+The script does not include all tables, but covers all important tables like customer, order, order_history, product, category, etc. It does not include tables for any extensions. It does not copy product_image.
