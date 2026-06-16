@@ -1,9 +1,9 @@
-# opencart
+# opencart mySql
 
-Two raw SQL scripts I used to move data from one opencart database version to another. They only insert rows that are not already in the destination database, so you can run them more than once. Not having referential integrity is generally a bad idea, but it makes using this sort of script easy because no particular order is needed for the inserts.
+Raw mySql scripts to move data from one opencart database version to another. The most recent script is a general purpose migration script that uses information_schema to generate insert statements for all matching tables and columns between two databases. This is a powerful way to transfer data when moving to a different OC version, because no manual editing of inserts is required. Replace YOUR_SOURCE_DB_NAME and YOUR_DESTINATION_DB_NAME and run the script to generate insert statements. Copy and execute the insert statements for tables you want to populate. Truncate statements are also included if you want to clear destination tables first. I hope to eventually add "where not exists" to allow incremental inserts for only data that's not already in the destination table(s).
 
-You need to replace [opencartx_db] with the names of your source and destination databases. BE CAREFUL, make a data backup script, test on a copy of databases before using this in production! This has been tested in CPanel phpMyAdmin, but because it uses "insert () select from ...", you cannot execute and roll back (phpMyAdmin is not very smart about pre-parsing queries).
+The older, version-specific scripts only insert rows that are not already in the destination database, so you can run them more than once. Not having referential integrity is generally a bad idea, but it makes using this sort of script easy because no particular order is needed for the inserts. You need to replace [opencartx_db] with the names of your source and destination databases. BE CAREFUL, make a data backup script, test on a copy of databases before using this in production! This has been tested in CPanel phpMyAdmin, but because it uses "insert () select from ...", you cannot execute and roll back (phpMyAdmin is not very smart about pre-parsing queries).
 
-The script does not include all tables, but covers all important tables like customer, order, order_history, product, category, etc. It does not include tables for any extensions. It does not copy product_image.
+Two version specific scripts do not include all tables, but cover all important tables like customer, order, order_history, product, category, etc. It does not include tables for any extensions. It does not copy product_image.
 
-See additional JSON conversion script for payment_method fix here: https://github.com/opencart/opencart/issues/13749
+ee additional JSON conversion script for payment_method fix here: https://github.com/opencart/opencart/issues/13749
